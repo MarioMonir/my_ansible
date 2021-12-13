@@ -56,6 +56,9 @@ Side Note : to cache the passphrase =>  me:$ eval $(ssh-agent)
 
 ## ad-hoc Commands
 
+-m : module
+-a : argument
+
 #### access ansible to all ssh file  
 
 ##### ping inventory of web servers
@@ -75,3 +78,23 @@ now you just need to run
 #### to get list of all hosts
     
     ansible all --list-hosts
+
+
+#### to gather facts about server
+    
+    ansible all -m gather_facts
+   
+### make change example ( ubuntu / debian   update cache )
+
+    ansible all -m apt -a update_cache 
+    
+### if you are not root user  ( ask for sudo password )
+
+    ansible all -m apt -a update_cache --become --ask-become-pass
+
+       
+
+### install a package in all our modules by apt  ( vim-nox package ) 
+
+    ansible all -m apt -a name=vim-nox 
+    
